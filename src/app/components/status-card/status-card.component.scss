@@ -1,0 +1,44 @@
+@use '~carbon-components/scss/globals/scss/layout';
+@use '~carbon-components/scss/globals/scss/colors';
+@import '~carbon-components/scss/globals/scss/typography';
+
+:host {
+    display: block;
+    padding: layout.$spacing-03;
+    border: 1px solid colors.$gray-20;
+}
+
+.card-title {
+    @include type-style('productive-heading-03');
+}
+
+.card-body {
+    display: flex;
+    margin: layout.$spacing-06 0;
+
+    .static {
+        @include type-style('productive-heading-06');
+        padding-right: layout.$spacing-03;
+    }
+
+    .description {
+        @include type-style('body-short-01');
+    }
+}
+
+.card-footer {
+    display: flex;
+
+    .chart {
+        flex: 1;
+
+        ::ng-deep .rangeIndicator {
+            display: none;
+        }
+    }
+
+    .tooltip {
+        padding-right: layout.$spacing-03;
+        height: 16px;
+    }
+}

@@ -1,0 +1,13 @@
+<h3 class="card-title">{{cardTitle}}</h3>
+<div class="card-body">
+    <div class="static">{{stats}}</div>
+    <div class="description">{{statsDescription}}</div>
+</div>
+<div class="card-footer">
+    <ibm-tooltip-icon [content]="tooltip" class="tooltip">
+        <ng-content></ng-content>
+    </ibm-tooltip-icon>
+    <div *ngIf="progress" class="chart">
+        <ibm-meter-chart [data]="chartData" [options]="chartOptions"></ibm-meter-chart>
+    </div>
+</div>
