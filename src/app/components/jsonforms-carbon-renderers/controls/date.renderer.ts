@@ -36,10 +36,11 @@ import { DatePicker } from 'carbon-components-angular';
   selector: 'DateControlRenderer',
   template: `
     <ibm-date-picker
+      #datePicker
       [label]="label"
       [id]="id"
       (valueChange)="onChange($event)"
-      [value]="dateData"
+      [value]="data"
       [disabled]="!isEnabled()"
       [invalid]="$any(error)"
       [invalidText]="$any(error)"
@@ -52,7 +53,6 @@ import { DatePicker } from 'carbon-components-angular';
 })
 export class DateControlRenderer extends JsonFormsControl {
   @ViewChild('datePicker', {static: true}) datePicker!: DatePicker;
-  dateData = ['2033-04-05'];
   constructor(
     jsonformsService: JsonFormsAngularService,
 
@@ -65,7 +65,9 @@ export class DateControlRenderer extends JsonFormsControl {
     super.ngOnInit();
     // Replace id format so that it is not cause carbon date picker error
     this.id = this.id.replace('#', '_').replace(/\//g, '-');
-    console.log(this.datePicker);
+    if (this.data) {
+      this.datePicker.input.value = this.data;
+    }
   }
 
   mapAdditionalProps() {
