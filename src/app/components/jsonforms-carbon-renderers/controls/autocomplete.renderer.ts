@@ -33,6 +33,7 @@ import {
   RankedTester,
   rankWith
 } from '@jsonforms/core';
+import { ListItem } from 'carbon-components-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { startWith } from 'rxjs/operators';
@@ -63,13 +64,24 @@ import { startWith } from 'rxjs/operators';
 @Component({
   selector: 'AutocompleteControlRenderer',
   template: `
-  Autocomplete control
+  <ibm-combo-box
+    [disabled]="!isEnabled()"
+    [invalid]="$any(error)"
+    [appendInline]="false"
+    [invalidText]="$any(error)"
+    [label]="label"
+    [items]="filteredOptions"
+    (selected)="onSelect($event)"
+    (search)="onSearch($event)"
+    >
+    <ibm-dropdown-list></ibm-dropdown-list>
+  </ibm-combo-box>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteControlRenderer extends JsonFormsControl {
-  @Input() options: string[] = [];
-  filteredOptions!: Observable<string[]>;
+  @Input() options?: string[];
+  filteredOptions: any[] = [];
   shouldFilter!: boolean;
 
   constructor(jsonformsService: JsonFormsAngularService) {
@@ -79,41 +91,38 @@ export class AutocompleteControlRenderer extends JsonFormsControl {
 
   ngOnInit() {
     super.ngOnInit();
-    this.shouldFilter = false;
-    this.filteredOptions = this.form.valueChanges.pipe(
-      startWith(''),
-      map(val => this.filter(val))
-    );
+    this.onSearch('');
   }
 
-  updateFilter(event: any) {
-    // ENTER
-    if (event.keyCode === 13) {
-      this.shouldFilter = false;
-    } else {
-      this.shouldFilter = true;
-    }
-  }
+
 
   onSelect(ev: any) {
+    
     const path = composeWithUi(this.uischema as ControlElement, this.path);
-    this.shouldFilter = false;
-    this.jsonFormsService.updateCore(Actions.update(path, () => ev.option.value));
+    if (ev.item) {
+      this.jsonFormsService.updateCore(Actions.update(path, () => ev.item.content));
+    } else {
+      this.jsonFormsService.updateCore(Actions.update(path, () => ''));
+    }
     this.triggerValidation();
   }
 
-  filter(val: string): string[] {
-    return (this.options || this.scopedSchema.enum || []).filter(
-      option =>
-        !this.shouldFilter ||
-        !val ||
-        option.toLowerCase().indexOf(val.toLowerCase()) === 0
-    );
-  }
+  onSearch(val: string) {
+		this.filteredOptions = (this.options || this.scopedSchema.enum || [])
+      .filter(
+        options => options.toLowerCase().includes(val.toLowerCase())
+      )
+      .map(option => {
+        return {
+          content: option
+        }
+      })
+	}
+
   protected getOwnProps(): OwnPropsOfAutoComplete {
     return {
       ...super.getOwnProps(),
-      options: this.options
+      options: this.options as any
     };
   }
 }

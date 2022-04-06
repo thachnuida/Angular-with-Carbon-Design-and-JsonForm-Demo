@@ -80,7 +80,7 @@ export class DateControlRenderer extends JsonFormsControl {
   }
 
   getEventValue = (event: any) => {
-    return event[0].toISOString().substr(0, 10);
+    return this.datePicker.input.value;
   } 
 }
 

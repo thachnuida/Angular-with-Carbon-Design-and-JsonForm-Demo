@@ -15,10 +15,6 @@
   </div>
 </div>
 
-<ibm-date-picker
-  [value]="['01/04/2030']"
->
-</ibm-date-picker>
 
 <jsonforms
     [data]="data"
@@ -26,4 +22,5 @@
     [uischema]="uischema"
     [renderers]="renderers"
     [ajv]="ajv"
+    (dataChange)="onDateChange($event)"
 ></jsonforms>

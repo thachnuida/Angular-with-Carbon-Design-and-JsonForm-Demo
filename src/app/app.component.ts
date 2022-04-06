@@ -20,4 +20,8 @@ export class AppComponent {
     schemaId: 'auto' as any,
     allErrors: true
   });
+
+  onDateChange(event: any) {
+    console.log(event);
+  }
 }
