@@ -1,0 +1,33 @@
+{
+    "type": "Categorization",
+    "elements": [
+      {
+        "type": "Category",
+        "label": "Language",
+        "elements": [
+          {
+            "type": "Label",
+            "text": "Choose preferred locale"
+          },
+          {
+            "type": "Control",
+            "scope": "#",
+            "options": {
+              "lang": true
+            }
+          }
+        ]
+      },
+      {
+        "type": "Category",
+        "label": "Contracts",
+        "elements": [
+          {
+            "type": "Label",
+            "text": "Currently Empty Category"
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { StatusCardModule } from './components/status-card/status-card.module';
 
 import { InformationModule } from '@carbon/icons-angular';
+import { JsonFormsAngularCarbonModule } from './components/jsonforms-carbon-renderers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +18,8 @@ import { InformationModule } from '@carbon/icons-angular';
     AppRoutingModule,
     GridModule,
     InformationModule,
-
-
+    
+    JsonFormsAngularCarbonModule,
     StatusCardModule,
   ],
   providers: [],
