@@ -31,8 +31,8 @@ import { JsonFormsAngularService } from '@jsonforms/angular';
   selector: 'GroupLayoutRenderer',
   template: `
     <div>
-      <h2>{{ uischema.label }}</h2>
-      <div *ngFor="let props of renderProps; trackBy: trackElement">
+      <h4>{{ uischema.label }}</h4>
+      <div class="form-item" *ngFor="let props of renderProps; trackBy: trackElement">
         <jsonforms-outlet [renderProps]="props"></jsonforms-outlet>
       </div>
     </div>

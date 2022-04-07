@@ -1,5 +1,6 @@
 
 <div ibmGrid>
+  <h1>Status Card</h1>
   <div ibmRow>
     <div ibmCol [columnNumbers]="{lg: 4, md: 4}">
       <status-card
@@ -13,14 +14,20 @@
       </status-card>
     </div>
   </div>
+
+  <h1 style="margin-top: 2rem;">JsonForms</h1>
+  <div ibmRow>    
+    <div ibmCol [columnNumbers]="{lg: 8}">
+      <jsonforms
+        [data]="data"
+        [schema]="schema"
+        [uischema]="uischema"
+        [renderers]="renderers"
+        [ajv]="ajv"
+        (dataChange)="onDateChange($event)"
+      ></jsonforms>
+    </div>
+  </div>
 </div>
 
 
-<jsonforms
-    [data]="data"
-    [schema]="schema"
-    [uischema]="uischema"
-    [renderers]="renderers"
-    [ajv]="ajv"
-    (dataChange)="onDateChange($event)"
-></jsonforms>

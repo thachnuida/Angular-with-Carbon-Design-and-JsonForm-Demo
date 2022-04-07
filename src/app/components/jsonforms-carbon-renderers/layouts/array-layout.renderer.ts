@@ -71,16 +71,16 @@ import {
             trackBy: trackByFn;
             last as last
           ">
-      <div>
-          <div>
-              <jsonforms-outlet [renderProps]="getProps(idx)"></jsonforms-outlet>
-          </div>
-          <div *ngIf="isEnabled()">
-              <ibm-tooltip-icon [content]="this.removeTooltip">
-                <ibm-icon-trash-can size="16"(click)="remove(idx)" attr.aria-label="{{ this.removeAriaLabel }}"></ibm-icon-trash-can>
-              </ibm-tooltip-icon>
-          </div>
-      </div>
+
+    <div>
+        <jsonforms-outlet [renderProps]="getProps(idx)"></jsonforms-outlet>
+    </div>
+    <div *ngIf="isEnabled()">
+        <ibm-tooltip-icon [content]="this.removeTooltip">
+          <ibm-icon-trash-can size="16"(click)="remove(idx)" attr.aria-label="{{ this.removeAriaLabel }}"></ibm-icon-trash-can>
+        </ibm-tooltip-icon>
+    </div>
+
   </div>
 
   `,

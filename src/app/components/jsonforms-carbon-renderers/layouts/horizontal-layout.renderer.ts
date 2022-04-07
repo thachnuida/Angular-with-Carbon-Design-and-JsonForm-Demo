@@ -36,7 +36,7 @@ import { JsonFormsAngularService } from '@jsonforms/angular';
   selector: 'HorizontalLayoutRenderer',
   template: `
     <div style="display: flex; flex-direction: row;">
-      <div *ngFor="let props of renderProps; trackBy: trackElement">
+      <div class="form-item" *ngFor="let props of renderProps; trackBy: trackElement">
         <jsonforms-outlet [renderProps]="props"></jsonforms-outlet>
       </div>
     </div>

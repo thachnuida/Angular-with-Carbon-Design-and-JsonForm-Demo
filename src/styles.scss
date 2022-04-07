@@ -6,3 +6,8 @@ $font-path: '~carbon-components/src/globals/fonts';
 
 @import "~carbon-components/scss/globals/scss/styles.scss";
 @import "@carbon/charts/styles/styles.scss";
+
+// Json form
+.form-item {
+  margin-top: 1.5rem;
+}
